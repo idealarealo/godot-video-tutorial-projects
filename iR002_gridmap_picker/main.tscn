@@ -1,0 +1,94 @@
+[gd_scene load_steps=13 format=3 uid="uid://b7ahua24m5u6n"]
+
+[ext_resource type="MeshLibrary" uid="uid://cnbud5yan6300" path="res://resources/terrain.meshlib" id="1_60168"]
+[ext_resource type="PackedScene" uid="uid://jiradbeny4hr" path="res://resources/cursor/cursor.tscn" id="2_w80og"]
+[ext_resource type="MeshLibrary" uid="uid://6hnyxnh6x45m" path="res://resources/objects/objects.meshlib" id="3_58ljg"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_gkkvg"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_lmxp7"]
+sky_material = SubResource("ProceduralSkyMaterial_gkkvg")
+
+[sub_resource type="Environment" id="Environment_lq8fr"]
+background_mode = 2
+sky = SubResource("Sky_lmxp7")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a2cc0"]
+albedo_color = Color(0.325002, 0.306215, 0.121191, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_20mxw"]
+material = SubResource("StandardMaterial3D_a2cc0")
+size = Vector2(20, 20)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_6es4o"]
+points = PackedVector3Array(-10, 0, -10, -10, 0, 10, 10, 0, -10, 10, 0, 10)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_18n1r"]
+transparency = 1
+albedo_color = Color(0.121569, 0.341176, 0.560784, 0.223529)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_lmowx"]
+material = SubResource("StandardMaterial3D_18n1r")
+size = Vector2(20, 20)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_0kpee"]
+points = PackedVector3Array(-10, 0, -10, -10, 0, 10, 10, 0, -10, 10, 0, 10)
+
+[node name="Main" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_lq8fr")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 6.07858, 0)
+shadow_enabled = true
+
+[node name="Terrain" type="GridMap" parent="."]
+mesh_library = ExtResource("1_60168")
+cell_size = Vector3(1, 1, 1)
+cell_center_x = false
+cell_center_y = false
+cell_center_z = false
+data = {
+"cells": PackedInt32Array(0, 0, 0, 0, 65535, 0, 65535, 65535, 0, 65535, 0, 1, 65535, 1, 0, 0, 1, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 2, 1, 0, 1, 1, 0, 1, 65535, 0, 1, 65534, 1, 2, 65534, 0, 0, 2, 0, 65535, 2, 0, 65534, 1, 0, 65534, 2, 0, 65533, 1, 1, 65533, 0, 0, 65533, 65535, 0, 65534, 65535, 0, 65534, 65534, 1, 65535, 65534, 0, 0, 65534, 0, 65534, 0, 0, 65532, 65535, 1, 65532, 0, 0, 65532, 1, 0, 65533, 2, 0, 65534, 3, 0, 1, 2, 0, 1, 3, 0, 2, 2, 0, 3, 1, 1, 4, 0, 0, 3, 65535, 0, 3, 65534, 0, 2, 65535, 0, 4, 1, 0, 65531, 65535, 0, 65531, 0, 0, 65531, 1, 0, 65532, 2, 0, 65533, 3, 0, 65533, 65534, 0, 65533, 65533, 0, 65534, 65533, 0, 65535, 65533, 0, 0, 65533, 0, 1, 65533, 0, 3, 2, 0, 4, 65535, 1, 4, 65534, 0, 3, 65533, 0, 2, 65533, 0, 4, 2, 0, 5, 1, 0, 5, 0, 0, 0, 3, 1, 1, 4, 0, 2, 3, 0)
+}
+
+[node name="sand" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="sand"]
+mesh = SubResource("PlaneMesh_20mxw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="sand"]
+shape = SubResource("ConvexPolygonShape3D_6es4o")
+
+[node name="water" type="StaticBody3D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="water"]
+mesh = SubResource("PlaneMesh_lmowx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="water"]
+shape = SubResource("ConvexPolygonShape3D_0kpee")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.842002, -0.209904, 0.496964, 0, 0.9212, 0.38909, -0.539474, -0.327614, 0.775652, 4.59497, 3.32994, 6.51806)
+
+[node name="cursor" parent="." node_paths=PackedStringArray("_terrain_map", "_object_map") instance=ExtResource("2_w80og")]
+_terrain_map = NodePath("../Terrain")
+_object_map = NodePath("../Objects")
+
+[node name="Objects" type="GridMap" parent="."]
+mesh_library = ExtResource("3_58ljg")
+cell_size = Vector3(1, 1, 1)
+cell_center_x = false
+cell_center_y = false
+cell_center_z = false
+data = {
+"cells": PackedInt32Array(65535, 3, 0, 2, 4, 0, 4, 3, 0, 2, 3, 1, 2, 65535, 1, 65535, 1, 1, 4, 1, 1)
+}

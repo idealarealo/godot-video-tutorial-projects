@@ -1,0 +1,106 @@
+[gd_scene load_steps=14 format=3 uid="uid://bppb2ioudg8ol"]
+
+[ext_resource type="Script" uid="uid://djld4apq4bvec" path="res://Player.gd" id="1_wsabj"]
+[ext_resource type="Script" uid="uid://c8kq5t83ujqgc" path="res://Camera.gd" id="2_wqxei"]
+[ext_resource type="Script" uid="uid://kcrldqc0h60e" path="res://SubViewport.gd" id="3_ykk8j"]
+[ext_resource type="Script" uid="uid://w33ee67igou1" path="res://Cursor.gd" id="4_c76ip"]
+
+[sub_resource type="Environment" id="Environment_fnnbw"]
+background_energy_multiplier = 0.37
+ambient_light_source = 2
+ambient_light_color = Color(0.635294, 0.635294, 0.635294, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_56b7u"]
+noise_type = 0
+frequency = 0.116
+fractal_octaves = 2
+fractal_gain = 0.715
+fractal_weighted_strength = 0.95
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_qyfgm"]
+noise = SubResource("FastNoiseLite_56b7u")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_abxt4"]
+albedo_color = Color(0.87451, 0.388235, 0, 1)
+albedo_texture = SubResource("NoiseTexture2D_qyfgm")
+metallic = 0.49
+anisotropy = 0.43
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_r37yr"]
+size = Vector2(16, 16)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2p236"]
+albedo_color = Color(1, 0.403922, 0.796078, 1)
+metallic = 0.8
+metallic_specular = 0.7
+roughness = 0.5
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_4foc6"]
+material = SubResource("StandardMaterial3D_2p236")
+radial_segments = 32
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cmymo"]
+transparency = 1
+no_depth_test = true
+albedo_color = Color(1, 1, 1, 0.643137)
+disable_receive_shadows = true
+
+[sub_resource type="TorusMesh" id="TorusMesh_yidlw"]
+material = SubResource("StandardMaterial3D_cmymo")
+inner_radius = 0.8
+rings = 16
+ring_segments = 8
+
+[node name="World" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_fnnbw")
+
+[node name="Ground" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_abxt4")
+mesh = SubResource("PlaneMesh_r37yr")
+
+[node name="Player" type="StaticBody3D" parent="."]
+script = ExtResource("1_wsabj")
+
+[node name="PlayerMesh" type="MeshInstance3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.820863, 0)
+mesh = SubResource("CapsuleMesh_4foc6")
+skeleton = NodePath("../..")
+
+[node name="Light" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.635674, -0.522075, 0.568645, 0.0276255, 0.72077, 0.692623, -0.771463, 0.455992, -0.443752, 0, 6.98084, 0)
+light_color = Color(1, 0.976471, 0.411765, 1)
+light_energy = 1.629
+shadow_enabled = true
+
+[node name="Camera" type="Camera3D" parent="."]
+transform = Transform3D(0.680862, -0.311082, 0.663065, 0, 0.905317, 0.424737, -0.732412, -0.289187, 0.616395, 5.40306, 3.30296, 5.14037)
+script = ExtResource("2_wqxei")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+process_priority = 1
+own_world_3d = true
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+script = ExtResource("3_ykk8j")
+
+[node name="Cursor" type="StaticBody3D" parent="SubViewportContainer/SubViewport"]
+script = ExtResource("4_c76ip")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Cursor"]
+mesh = SubResource("TorusMesh_yidlw")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="SubViewportContainer/SubViewport/Cursor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.09075, 0)
+light_energy = 3.909

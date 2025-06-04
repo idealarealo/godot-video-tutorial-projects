@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://cey475mffqif5"]
+
+[ext_resource type="PackedScene" uid="uid://cgbfvfetngehi" path="res://resources/terrain.blend" id="1_hrro6"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_1cbjs"]
+points = PackedVector3Array(-0.5, -1, -0.5, -0.5, -1, 0.5, -0.5, 0.2, -0.5, 0.5, -1, -0.5, 0.5, -1, 0.5, -0.5, 0.2, 0.5, 0.5, 0.2, -0.5, 0.5, 0.2, 0.5)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_v2wbx"]
+points = PackedVector3Array(-0.5, -1, -0.5, -0.5, -1, 0.5, -0.5, 0.199883, -0.5, 0.5, -1, -0.5, 0.5, -1, 0.5, -0.5, 0.199883, 0.5, -9.78708e-05, 0.20047, -0.5, -0.5, 0.20047, -9.78708e-05, -0.125098, 0.455217, -9.78708e-05, -9.78708e-05, 0.5, -9.78708e-05, -9.78708e-05, 0.455217, -0.125098, 0.5, 0.199883, -0.5, 0.5, 0.199883, 0.5, -0.5, 0.20047, 0, -9.78708e-05, 0.20047, 0.5, -9.78708e-05, 0.455217, 0.124902, 0, 0.20047, -0.5, 0.124902, 0.455217, -9.78708e-05, 0.5, 0.20047, -9.78708e-05, 0, 0.20047, 0.5, 0.5, 0.20047, 0)
+
+[node name="terrain" instance=ExtResource("1_hrro6")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="000_grass" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="000_grass/StaticBody3D" index="0"]
+shape = SubResource("ConvexPolygonShape3D_1cbjs")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="001_hill" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="001_hill/StaticBody3D" index="0"]
+shape = SubResource("ConvexPolygonShape3D_v2wbx")

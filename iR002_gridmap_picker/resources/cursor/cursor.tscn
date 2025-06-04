@@ -1,0 +1,22 @@
+[gd_scene load_steps=6 format=3 uid="uid://jiradbeny4hr"]
+
+[ext_resource type="PackedScene" uid="uid://5aaiig11jj0p" path="res://resources/cursor/cursor.blend" id="1_0r5p5"]
+[ext_resource type="Script" uid="uid://xfgec2vk0y2w" path="res://resources/cursor/cursor.gd" id="2_f0c7m"]
+[ext_resource type="Shader" uid="uid://c5kip0ul1w005" path="res://resources/cursor/cursor.gdshader" id="2_taw4b"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bj0w3"]
+render_priority = 1
+transparency = 1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1078n"]
+render_priority = 0
+next_pass = SubResource("StandardMaterial3D_bj0w3")
+shader = ExtResource("2_taw4b")
+
+[node name="cursor" instance=ExtResource("1_0r5p5")]
+script = ExtResource("2_f0c7m")
+
+[node name="Cursor" parent="." index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_1078n")
+
+[node name="pivot" type="MeshInstance3D" parent="." index="1"]

@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://qtyh08cuu56j"]
+
+[ext_resource type="PackedScene" uid="uid://cgd2jk8mmslc6" path="res://resources/objects/objects.blend" id="1_84x3i"]
+
+[node name="objects" instance=ExtResource("1_84x3i")]
