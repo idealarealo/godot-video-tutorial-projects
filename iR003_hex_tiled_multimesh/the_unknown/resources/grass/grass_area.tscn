@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://djelbsdknd1n1"]
+
+[ext_resource type="Script" uid="uid://lfp8gf4iyl0c" path="res://the_unknown/resources/grass/grass_area.gd" id="1_p3ysh"]
+
+[node name="GrassArea" type="MultiMeshInstance3D"]
+script = ExtResource("1_p3ysh")

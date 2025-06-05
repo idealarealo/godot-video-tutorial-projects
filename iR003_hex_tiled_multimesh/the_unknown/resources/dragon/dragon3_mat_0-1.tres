@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bbb53s31ybttk"]
+
+[ext_resource type="Texture2D" uid="uid://ckj3y6lh6fuxq" path="res://the_unknown/resources/dragon/dragon3_Dragon_ground_color.jpg" id="1_awmkt"]
+
+[resource]
+resource_name = "Game_dragon.002"
+shading_mode = 2
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.87451, 0.87451, 0.87451, 1)
+albedo_texture = ExtResource("1_awmkt")
+metallic = 0.3
+roughness = 0.8

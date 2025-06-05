@@ -1,0 +1,45 @@
+[gd_resource type="AnimationNodeStateMachine" load_steps=10 format=3 uid="uid://k03k758woskq"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_rkhml"]
+nodes/output/position = Vector2(520, 180)
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_su8e3"]
+animation = &"CatWalking"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yilry"]
+animation = &"Flying"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lt8cd"]
+animation = &"Waving"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1oa30"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_uckm8"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gb7u0"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bi7bq"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nn1lj"]
+switch_mode = 2
+advance_mode = 2
+
+[resource]
+states/BlendTree/node = SubResource("AnimationNodeBlendTree_rkhml")
+states/BlendTree/position = Vector2(735, 170)
+states/CatWalking/node = SubResource("AnimationNodeAnimation_su8e3")
+states/CatWalking/position = Vector2(265, 170)
+states/End/position = Vector2(911, 170)
+states/Flying/node = SubResource("AnimationNodeAnimation_yilry")
+states/Flying/position = Vector2(582, 170)
+states/Start/position = Vector2(111, 170)
+states/Waving/node = SubResource("AnimationNodeAnimation_lt8cd")
+states/Waving/position = Vector2(441, 170)
+transitions = ["Start", "CatWalking", SubResource("AnimationNodeStateMachineTransition_1oa30"), "CatWalking", "Waving", SubResource("AnimationNodeStateMachineTransition_uckm8"), "Waving", "Flying", SubResource("AnimationNodeStateMachineTransition_gb7u0"), "Flying", "BlendTree", SubResource("AnimationNodeStateMachineTransition_bi7bq"), "BlendTree", "End", SubResource("AnimationNodeStateMachineTransition_nn1lj")]

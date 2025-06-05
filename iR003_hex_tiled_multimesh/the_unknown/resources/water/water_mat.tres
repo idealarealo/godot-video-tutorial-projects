@@ -1,0 +1,73 @@
+[gd_resource type="ShaderMaterial" load_steps=8 format=3 uid="uid://bv44mrjv7dpx4"]
+
+[ext_resource type="Shader" uid="uid://brgy0lwpgb67y" path="res://the_unknown/resources/water/water3.gdshader" id="1_5y2m7"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_eh24i"]
+noise_type = 3
+frequency = 0.002
+fractal_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_d7bhh"]
+generate_mipmaps = false
+seamless = true
+seamless_blend_skirt = 0.151
+as_normal_map = true
+bump_strength = 22.6
+noise = SubResource("FastNoiseLite_eh24i")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_gm2df"]
+noise_type = 3
+seed = 1
+frequency = 0.003
+fractal_type = 2
+fractal_gain = 0.6
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_m5ouv"]
+generate_mipmaps = false
+seamless = true
+seamless_blend_skirt = 0.181
+as_normal_map = true
+bump_strength = 16.9
+noise = SubResource("FastNoiseLite_gm2df")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_etmyb"]
+seed = 3
+frequency = 0.04
+fractal_type = 0
+fractal_octaves = 4
+fractal_lacunarity = 1.72
+fractal_gain = 0.075
+fractal_weighted_strength = 1.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_080pm"]
+width = 256
+height = 256
+generate_mipmaps = false
+seamless = true
+seamless_blend_skirt = 0.181
+as_normal_map = true
+noise = SubResource("FastNoiseLite_etmyb")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_5y2m7")
+shader_parameter/albedo1 = Color(0.0365213, 0.080487, 0.173348, 1)
+shader_parameter/albedo2 = Color(0.129671, 0.42397, 0.666048, 1)
+shader_parameter/color_shallow = Color(1, 1, 1, 1)
+shader_parameter/color_deep = Color(0.00996742, 0.0291606, 0.0755941, 1)
+shader_parameter/metallic = 0.2
+shader_parameter/roughness = 0.1
+shader_parameter/normalmap_a = SubResource("NoiseTexture2D_d7bhh")
+shader_parameter/normalmap_b = SubResource("NoiseTexture2D_m5ouv")
+shader_parameter/move_dir1 = Vector2(0.96, 0.05)
+shader_parameter/move_dir2 = Vector2(-0.15, 0.22)
+shader_parameter/move_strength = -2.1
+shader_parameter/uv_scale = 1.0
+shader_parameter/wave = SubResource("NoiseTexture2D_080pm")
+shader_parameter/time_scale = 0.03
+shader_parameter/noise_scale = 0.04
+shader_parameter/height_scale = 0.2
+shader_parameter/normal_scale = 1.0
+shader_parameter/edge_scale = 0.14
+shader_parameter/edge_color = Color(1, 1, 1, 1)
+shader_parameter/alpha = 1.0

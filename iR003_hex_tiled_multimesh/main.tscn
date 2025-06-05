@@ -1,0 +1,119 @@
+[gd_scene load_steps=21 format=3 uid="uid://xl2h71q3wmli"]
+
+[ext_resource type="Script" uid="uid://1l1u5uptduxo" path="res://main.gd" id="1_4c57u"]
+[ext_resource type="PackedScene" uid="uid://b8kker2afcilp" path="res://resources/grid_area.tscn" id="3_2cqfq"]
+[ext_resource type="Script" uid="uid://d0dbokadu0upb" path="res://resources/camera.gd" id="3_82000"]
+[ext_resource type="Material" uid="uid://bv44mrjv7dpx4" path="res://the_unknown/resources/water/water_mat.tres" id="4_1bvp3"]
+[ext_resource type="Script" uid="uid://dw8xclk0woi32" path="res://the_unknown/unk_main.gd" id="4_bgehs"]
+[ext_resource type="Script" uid="uid://bwbnn4wgkoy2r" path="res://the_unknown/resources/water/water.gd" id="5_7mycd"]
+[ext_resource type="PackedScene" uid="uid://cqvfffldgehtu" path="res://the_unknown/resources/dragon/dragon1.tscn" id="7_vivmo"]
+[ext_resource type="PackedScene" uid="uid://ootedmt04l0p" path="res://the_unknown/resources/dragon/dragon2.tscn" id="8_2cqfq"]
+[ext_resource type="Material" uid="uid://byyj1i60a1wx1" path="res://the_unknown/resources/glass/glass.material" id="9_4c57u"]
+[ext_resource type="Script" uid="uid://b2npgllbnxjgn" path="res://the_unknown/resources/dragon/dragon_idle.gd" id="10_2cqfq"]
+[ext_resource type="Script" uid="uid://dx503i6lpkole" path="res://the_unknown/resources/glass/glass_ball.gd" id="10_efxa6"]
+[ext_resource type="PackedScene" uid="uid://cd0havtu0ew7a" path="res://the_unknown/resources/sere/fake_sere.tscn" id="11_2cqfq"]
+[ext_resource type="PackedScene" uid="uid://dc72pmgpjs0sj" path="res://the_unknown/resources/skirt/sere_skirt.tscn" id="11_dg77c"]
+[ext_resource type="Script" uid="uid://chn2rj7xddoy4" path="res://the_unknown/resources/skirt/sere_skirt.gd" id="12_ycdy4"]
+[ext_resource type="PackedScene" uid="uid://1nndh2ajxenj" path="res://the_unknown/resources/dragon/dragon3.tscn" id="17_yaehf"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_uexdj"]
+sky_top_color = Color(0.336502, 0.601137, 0.854291, 1)
+sky_horizon_color = Color(0.690893, 0.765115, 0.833131, 1)
+sky_curve = 0.160001
+ground_bottom_color = Color(0.113623, 0.213314, 0.332572, 1)
+ground_horizon_color = Color(0.592051, 0.703706, 0.796399, 1)
+ground_curve = 0.12
+
+[sub_resource type="Sky" id="Sky_htgde"]
+sky_material = SubResource("ProceduralSkyMaterial_uexdj")
+
+[sub_resource type="Environment" id="Environment_fjm45"]
+background_mode = 2
+sky = SubResource("Sky_htgde")
+ambient_light_source = 2
+ambient_light_color = Color(0.371435, 0.351363, 0.445948, 1)
+tonemap_mode = 2
+glow_enabled = true
+glow_intensity = 4.0
+glow_blend_mode = 1
+glow_hdr_threshold = 1.31
+glow_hdr_scale = 2.24
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.530495, 0.62589, 0.720295, 1)
+fog_density = 1.0
+fog_sky_affect = 0.1
+fog_depth_begin = 20.0
+fog_depth_end = 80.0
+adjustment_enabled = true
+adjustment_contrast = 1.05
+
+[sub_resource type="QuadMesh" id="QuadMesh_h2yge"]
+material = ExtResource("4_1bvp3")
+size = Vector2(200, 200)
+subdivide_width = 1200
+subdivide_depth = 1200
+orientation = 1
+
+[sub_resource type="SphereMesh" id="SphereMesh_dg77c"]
+material = ExtResource("9_4c57u")
+radius = 0.6
+height = 1.18
+radial_segments = 32
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_4c57u")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_fjm45")
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.642788, -0.299317, 0.705148, 0, 0.920505, 0.390731, -0.766044, 0.251157, -0.591689, 0, 0, 0)
+shadow_enabled = true
+shadow_normal_bias = 1.0
+shadow_opacity = 0.0
+shadow_blur = 0.5
+
+[node name="Camera" type="Camera3D" parent="."]
+transform = Transform3D(0.516573, -0.580097, 0.629793, 0, 0.735531, 0.677491, -0.856243, -0.349974, 0.379955, 4.25731, 6.06079, 5.81621)
+current = true
+far = 76.79
+script = ExtResource("3_82000")
+
+[node name="GridArea" parent="." instance=ExtResource("3_2cqfq")]
+
+[node name="TheUnknown" type="Node" parent="."]
+
+[node name="UnkMain" type="Node" parent="TheUnknown"]
+script = ExtResource("4_bgehs")
+
+[node name="Water" type="MeshInstance3D" parent="TheUnknown/UnkMain" node_paths=PackedStringArray("camera")]
+visible = false
+mesh = SubResource("QuadMesh_h2yge")
+script = ExtResource("5_7mycd")
+camera = NodePath("../../../Camera")
+
+[node name="Dragon1" parent="TheUnknown/UnkMain" instance=ExtResource("7_vivmo")]
+visible = false
+
+[node name="Dragon2" parent="TheUnknown/UnkMain" instance=ExtResource("8_2cqfq")]
+visible = false
+
+[node name="Dragon3" parent="TheUnknown/UnkMain" instance=ExtResource("17_yaehf")]
+visible = false
+script = ExtResource("10_2cqfq")
+
+[node name="Sere" parent="TheUnknown/UnkMain" instance=ExtResource("11_2cqfq")]
+visible = false
+
+[node name="SereSkirt" parent="TheUnknown/UnkMain" instance=ExtResource("11_dg77c")]
+visible = false
+script = ExtResource("12_ycdy4")
+
+[node name="GlassBall" type="MeshInstance3D" parent="TheUnknown/UnkMain"]
+visible = false
+mesh = SubResource("SphereMesh_dg77c")
+skeleton = NodePath("../../..")
+script = ExtResource("10_efxa6")
+
+[node name="pivot" type="Node3D" parent="TheUnknown"]

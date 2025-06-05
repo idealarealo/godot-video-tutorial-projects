@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b8kker2afcilp"]
+
+[ext_resource type="Script" uid="uid://cpnmv7xeeqq3b" path="res://resources/grid_area.gd" id="1_fhhfy"]
+
+[node name="GridArea" type="MultiMeshInstance3D"]
+script = ExtResource("1_fhhfy")

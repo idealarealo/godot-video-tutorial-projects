@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://4ajivva0t5nf"]
+
+[ext_resource type="Texture2D" uid="uid://b41t07v56upar" path="res://the_unknown/resources/dragon/dragon3_Dragon_Bump_Col2.jpg" id="1_d88rh"]
+
+[resource]
+resource_name = "EYES.001"
+shading_mode = 0
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.760784, 0.176471, 0.172549, 1)
+albedo_texture = ExtResource("1_d88rh")

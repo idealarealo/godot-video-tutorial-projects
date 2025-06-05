@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://nofc2iqukpav"]
+
+[ext_resource type="Shader" uid="uid://dfp4y5irrsv8j" path="res://the_unknown/resources/grass/flower_shader.gdshader" id="1_e6i6h"]
+[ext_resource type="Texture2D" uid="uid://dv4y4mymmxpln" path="res://the_unknown/resources/grass/grass_wave_texture.tres" id="2_esc8v"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_e6i6h")
+shader_parameter/albedo = Color(0.337255, 0.54902, 0.117647, 1)
+shader_parameter/wave = ExtResource("2_esc8v")
+shader_parameter/time_scale = 0.04
+shader_parameter/noise_scale = 0.06
+shader_parameter/height_scale = 0.8
