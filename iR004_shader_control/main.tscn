@@ -1,0 +1,119 @@
+[gd_scene load_steps=17 format=4 uid="uid://c01jge0nbs7ig"]
+
+[ext_resource type="Material" uid="uid://j6yomc5if5gd" path="res://assets/ray_mat.tres" id="1_1bvp3"]
+[ext_resource type="ArrayMesh" uid="uid://la4et7gm6y1" path="res://assets/ray.mesh" id="1_h2yge"]
+[ext_resource type="Shader" uid="uid://c0iosj4l6x2j7" path="res://assets/syncher.gdshader" id="1_lquwl"]
+[ext_resource type="Script" uid="uid://drx7qjycrmq0c" path="res://assets/activator.gd" id="2_0xm2m"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_h2yge"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_1bvp3"]
+sky_material = SubResource("ProceduralSkyMaterial_h2yge")
+
+[sub_resource type="Environment" id="Environment_lquwl"]
+background_mode = 2
+sky = SubResource("Sky_1bvp3")
+tonemap_mode = 2
+glow_enabled = true
+glow_intensity = 3.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1bvp3"]
+shader = ExtResource("1_lquwl")
+shader_parameter/gdscript_time = 0.0
+shader_parameter/passnumber = 0.0
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_lquwl"]
+viewport_path = NodePath("Syncher/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7mycd"]
+resource_local_to_scene = true
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_lquwl")
+
+[sub_resource type="QuadMesh" id="QuadMesh_272bh"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_7mycd")
+size = Vector2(0.02, 0.02)
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_h2yge"]
+resource_name = "ray_ray"
+_surfaces = [{
+"aabb": AABB(0, -0.00999999, -0.00999999, 1, 0.02, 0.02),
+"attribute_data": PackedByteArray("Pfj/////AAD/////PfgAAHvw//978AAAuej//7noAAD34P//9+AAADXZ//812QAAc9H//3PRAACxyf//sckAAO/B///vwQAALbr//y26AABrsv//a7IAAKmq//+qqgAA6KL//+iiAAAmm///JpsAAGST//9kkwAAoov//6KLAADgg///4IMAAB58//8efAAAXHT//1x0AACabP//mmwAANhk///YZAAAFl3//xZdAABUVf//VFUAAJNN//+TTQAA0UX//9FFAAAPPv//Dz4AAE02//9NNgAAiy7//4suAADJJv//ySYAAAcf//8HHwAARRf//0UXAACDD///gw8AAMEH///BBwAAAAD//wAAAAA9+P////8AAP////89+AAAe/D//3vwAAC56P//uegAAPfg///34AAANdn//zXZAABz0f//c9EAALHJ//+xyQAA78H//+/BAAAtuv//LboAAGuy//9rsgAAqar//6qqAADoov//6KIAACab//8mmwAAZJP//2STAACii///oosAAOCD///ggwAAHnz//x58AABcdP//XHQAAJps//+abAAA2GT//9hkAAAWXf//Fl0AAFRV//9UVQAAk03//5NNAADRRf//0UUAAA8+//8PPgAATTb//002AACLLv//iy4AAMkm///JJgAABx///wcfAABFF///RRcAAIMP//+DDwAAwQf//8EHAAAAAP//AAAAAA=="),
+"format": 34896613399,
+"index_count": 396,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAADAAAABAAFAAMABgAFAAQABgAHAAUACAAHAAYACAAJAAcACgAJAAgACgALAAkADAALAAoADAANAAsADgANAAwADgAPAA0AEAAPAA4AEAARAA8AEgARABAAEgATABEAFAATABIAFAAVABMAFgAVABQAFgAXABUAGAAXABYAGAAZABcAGgAZABgAGgAbABkAHAAbABoAHAAdABsAHgAdABwAHgAfAB0AIAAfAB4AIAAhAB8AIgAhACAAIgAjACEAJAAjACIAJAAlACMAJgAlACQAJgAnACUAKAAnACYAKAApACcAKgApACgAKgArACkALAArACoALAAtACsALgAtACwALgAvAC0AMAAvAC4AMAAxAC8AMgAxADAAMgAzADEANAAzADIANAA1ADMANgA1ADQANgA3ADUAOAA3ADYAOAA5ADcAOgA5ADgAOgA7ADkAPAA7ADoAPAA9ADsAPgA9ADwAPgA/AD0AQAA/AD4AQABBAD8AQgBBAEAAQgBDAEEARABFAEYARABHAEUASABHAEQASABJAEcASgBJAEgASgBLAEkATABLAEoATABNAEsATgBNAEwATgBPAE0AUABPAE4AUABRAE8AUgBRAFAAUgBTAFEAVABTAFIAVABVAFMAVgBVAFQAVgBXAFUAWABXAFYAWABZAFcAWgBZAFgAWgBbAFkAXABbAFoAXABdAFsAXgBdAFwAXgBfAF0AYABfAF4AYABhAF8AYgBhAGAAYgBjAGEAZABjAGIAZABlAGMAZgBlAGQAZgBnAGUAaABnAGYAaABpAGcAagBpAGgAagBrAGkAbABrAGoAbABtAGsAbgBtAGwAbgBvAG0AcABvAG4AcABxAG8AcgBxAHAAcgBzAHEAdABzAHIAdAB1AHMAdgB1AHQAdgB3AHUAeAB3AHYAeAB5AHcAegB5AHgAegB7AHkAfAB7AHoAfAB9AHsAfgB9AHwAfgB/AH0AgAB/AH4AgACBAH8AggCBAIAAggCDAIEAhACDAIIAhACFAIMAhgCFAIQAhgCHAIUA"),
+"material": ExtResource("1_1bvp3"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 136,
+"vertex_data": PackedByteArray("Pfj/f////7////9/AAD/v////3////+/Pfj/fwAA/7978P9/////v3vw/38AAP+/uej/f////7+56P9/AAD/v/fg/3////+/9+D/fwAA/7812f9/////vzXZ/38AAP+/c9H/f////79z0f9/AAD/v7HJ/3////+/scn/fwAA/7/vwf9/////v+/B/38AAP+/Lbr/f////78tuv9/AAD/v2uy/3////+/a7L/fwAA/7+pqv9/////v6qq/38AAP+/6KL/f////7/oov9/AAD/vyab/3////+/Jpv/fwAA/79kk/9/////v2ST/38AAP+/oov/f////7+ii/9/AAD/v+CD/3////+/4IP/fwAA/78efP9/////vx58/38AAP+/XHT/f////79cdP9/AAD/v5ps/3////+/mmz/fwAA/7/YZP9/////v9hk/38AAP+/Fl3/f////78WXf9/AAD/v1VV/3////+/VFX/fwAA/7+TTf9/////v5NN/38AAP+/0UX/f////7/RRf9/AAD/vw8+/3////+/Dz7/fwAA/79NNv9/////v002/38AAP+/iy7/f////7+LLv9/AAD/v8km/3////+/ySb/fwAA/78HH/9/////vwcf/38AAP+/RRf/f////79FF/9/AAD/v4MP/3////+/gw//fwAA/7/BB/9/////v8EH/38AAP+/AAD/f////78AAP9/AAD/vz34AAD/fwCA//////9/AID//wAA/38AgD34////fwCAe/AAAP9/AIB78P///38AgLnoAAD/fwCAuej///9/AID34AAA/38AgPfg////fwCANdkAAP9/AIA12f///38AgHPRAAD/fwCAc9H///9/AICxyQAA/38AgLHJ////fwCA78EAAP9/AIDvwf///38AgC26AAD/fwCALbr///9/AIBrsgAA/38AgGuy////fwCAqaoAAP9/AICqqv///38AgOiiAAD/fwCA6KL///9/AIAmmwAA/38AgCab////fwCAZJMAAP9/AIBkk////38AgKKLAAD/fwCAoov///9/AIDggwAA/38AgOCD////fwCAHnwAAP9/AIAefP///38AgFx0AAD/fwCAXHT///9/AICabAAA/38AgJps////fwCA2GQAAP9/AIDYZP///38AgBZdAAD/fwCAFl3///9/AIBVVQAA/38AgFRV////fwCAk00AAP9/AICTTf///38AgNFFAAD/fwCA0UX///9/AIAPPgAA/38AgA8+////fwCATTYAAP9/AIBNNv///38AgIsuAAD/fwCAiy7///9/AIDJJgAA/38AgMkm////fwCABx8AAP9/AIAHH////38AgEUXAAD/fwCARRf///9/AICDDwAA/38AgIMP////fwCAwQcAAP9/AIDBB////38AgAAAAAD/fwCAAAD///9/AID///9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f/9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f///")
+}]
+blend_shape_mode = 0
+shadow_mesh = ExtResource("1_h2yge")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ig7tw"]
+albedo_color = Color(0.362829, 0.362829, 0.362829, 1)
+metallic = 0.3
+roughness = 0.67
+
+[sub_resource type="BoxMesh" id="BoxMesh_0xm2m"]
+material = SubResource("StandardMaterial3D_ig7tw")
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h2yge"]
+albedo_color = Color(0.985226, 0.774829, 0, 1)
+roughness = 0.25
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_1bvp3"]
+material = SubResource("StandardMaterial3D_h2yge")
+radius = 0.025
+height = 0.1
+
+[node name="Main" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_lquwl")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.901778, 0.374296, -0.216099, -1.49013e-08, 0.499998, 0.866027, 0.432199, -0.780964, 0.450887, 0, 5.49448, 0)
+shadow_enabled = true
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.994703, 0.000179407, -0.102792, 0, 0.999998, 0.00174533, 0.102793, -0.00173608, 0.994701, 0.277, 0.106, 1.41)
+fov = 30.0
+
+[node name="Syncher" type="Node3D" parent="."]
+
+[node name="SubViewport" type="SubViewport" parent="Syncher"]
+disable_3d = true
+size = Vector2i(2, 2)
+
+[node name="ColorRect" type="ColorRect" parent="Syncher/SubViewport"]
+material = SubResource("ShaderMaterial_1bvp3")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Syncher"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0420945, 0, 0.0633937)
+mesh = SubResource("QuadMesh_272bh")
+
+[node name="ray" type="Node3D" parent="."]
+
+[node name="ray" type="MeshInstance3D" parent="ray"]
+mesh = SubResource("ArrayMesh_h2yge")
+skeleton = NodePath("")
+
+[node name="Generator" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.05, 0, 0)
+mesh = SubResource("BoxMesh_0xm2m")
+
+[node name="Activator" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.05, 0.1, 0)
+mesh = SubResource("CapsuleMesh_1bvp3")
+script = ExtResource("2_0xm2m")
