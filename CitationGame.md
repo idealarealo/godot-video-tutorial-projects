@@ -14,7 +14,7 @@ I spy...
 
 1. a Mighty Pirate chasing away a... "little monkey";
 
-1. the spell which allow you to hear the truth;
+1. the spell which allows you to hear the truth;
 
 1. the electrician, stand-in for the FBC Director;
 
