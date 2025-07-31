@@ -23,6 +23,9 @@ Godot projects from homonymous video tutorials on YouTube.
 	See the original video tutorial
 	["Godot 4: Shader Control" on YouTube](https://youtu.be/UXGnmXZzmtY)
 
+## Citation Game
+If you just watched the videos and think you have a thorough knowledge of past and present video games, you can try the [Citation Game](CitationGame.md) ;)
+
 ## License
 Those projects are distributed under the terms of the MIT license, as described in the [LICENSE](LICENSE) file.
 
