@@ -127,7 +127,7 @@ I spy...
   [Godot 4: Shader Control]
 
 - Jojo is the name of the monkey who worked as a piano player at the Bloody Lip Bar in "Monkey Island 2: 
-  LeChuck's Revenge". It can only play when the metromone is turned on.
+  LeChuck's Revenge". It can only play when the metronome is turned on.
 
   [Godot 4: Shader Control]
 
@@ -136,8 +136,8 @@ I spy...
 
   [Godot 4: Shader Control]
 
-- Mondain is a powerful wizard and villain in "Ultima" game serie.
-  The picture of the Statue of Mondain on a red background is taken from "Ultima VI".
+- Mondain is a powerful wizard and villain in "Ultima" game series.
+  The picture of the Statue of Mondain on a red background comes from "Ultima VI".
   The statue is reachable at the end of the Shrine of Control.
 
   [Godot 4: Shader Control]
@@ -145,7 +145,7 @@ I spy...
 - Sere is... the mannequin in my video tutorials :)
 
 - Timmy is the littlest lamb in the flock of the "Shaun the Sheep" television series and video game.
-  He is the cousin of Shaun (the Sheep).
+  He is the cousin of Shaun.
 
   [Godot 4: Shader Control]
 
