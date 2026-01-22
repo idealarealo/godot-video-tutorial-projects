@@ -28,6 +28,11 @@ Godot projects from homonymous video tutorials on YouTube.
 	See the video tutorial
 	["Godot 4 - The Beautiful Tiling" on YouTube](https://youtu.be/gDlECKOPWrY)
 
+1.
+	[Godot 4 - Dynamic Regions<br><img src="docs/iR006_dynamic_regions_480x270.jpg" alt="Godot4 - Dynamic Regions" style="width:240px;height:135px"/>](iR006_dynamic_regions)<br>
+	See the video tutorial
+	["Godot 4 - Dynamic Regions" on YouTube](https://youtu.be/)
+
 ## Citation Game
 If you just watched the videos and think you have a thorough knowledge of past and present video games, you can try the [Citation Game](CitationGame.md) ;)
 
